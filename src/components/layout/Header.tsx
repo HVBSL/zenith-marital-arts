@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Shield } from "lucide-react";
+import { Menu, X, Shield, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAdmin } from "@/contexts/AdminContext";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -14,6 +15,7 @@ const navLinks = [
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { isLoggedIn } = useAdmin();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
@@ -56,6 +58,26 @@ export const Header = () => {
                 )}
               </Link>
             ))}
+            {isLoggedIn && (
+              <Link
+                to="/admin/dashboard"
+                className={`relative px-4 py-2 font-heading font-medium text-sm transition-colors flex items-center gap-1 ${
+                  location.pathname === "/admin/dashboard"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <LayoutDashboard className="w-4 h-4" />
+                Admin
+                {location.pathname === "/admin/dashboard" && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-accent rounded-full"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              </Link>
+            )}
           </nav>
 
           {/* CTA Button */}
@@ -110,10 +132,30 @@ export const Header = () => {
                   </Link>
                 </motion.div>
               ))}
+              {isLoggedIn && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.1 }}
+                >
+                  <Link
+                    to="/admin/dashboard"
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block px-4 py-3 rounded-lg font-heading font-medium transition-colors flex items-center gap-2 ${
+                      location.pathname === "/admin/dashboard"
+                        ? "bg-primary text-primary-foreground"
+                        : "text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    <LayoutDashboard className="w-4 h-4" />
+                    Admin Dashboard
+                  </Link>
+                </motion.div>
+              )}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
+                transition={{ delay: (navLinks.length + (isLoggedIn ? 1 : 0)) * 0.1 }}
                 className="pt-2"
               >
                 <Button variant="hero" size="lg" className="w-full" asChild>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Layout } from "@/components/layout/Layout";
@@ -17,60 +17,10 @@ interface Event {
   location: string;
   image: string;
   status: "upcoming" | "completed";
+  active: boolean;
 }
 
-const events: Event[] = [
-  {
-    id: "1",
-    title: "Regional Karate Championship 2025",
-    description: "Join us for the annual regional championship featuring competitors from across the state.",
-    date: "March 15, 2025",
-    time: "9:00 AM - 5:00 PM",
-    location: "City Sports Arena",
-    image: eventTournamentImg,
-    status: "upcoming",
-  },
-  {
-    id: "2",
-    title: "Spring Belt Promotion Ceremony",
-    description: "Celebrate the achievements of our students as they advance to their next belt levels.",
-    date: "April 5, 2025",
-    time: "6:00 PM - 8:00 PM",
-    location: "Bushido Dojo Main Hall",
-    image: eventBeltCeremonyImg,
-    status: "upcoming",
-  },
-  {
-    id: "3",
-    title: "Girls Self-Defense Workshop",
-    description: "A special workshop focused on practical self-defense techniques for women and girls.",
-    date: "April 20, 2025",
-    time: "10:00 AM - 1:00 PM",
-    location: "Community Center",
-    image: eventTournamentImg,
-    status: "upcoming",
-  },
-  {
-    id: "4",
-    title: "Winter Tournament 2024",
-    description: "Our annual winter tournament brought together 200+ competitors for an amazing day of martial arts.",
-    date: "December 10, 2024",
-    time: "9:00 AM - 6:00 PM",
-    location: "City Sports Arena",
-    image: eventTournamentImg,
-    status: "completed",
-  },
-  {
-    id: "5",
-    title: "Fall Belt Ceremony 2024",
-    description: "50 students earned their new belts in our fall promotion ceremony.",
-    date: "November 15, 2024",
-    time: "6:00 PM - 8:00 PM",
-    location: "Bushido Dojo Main Hall",
-    image: eventBeltCeremonyImg,
-    status: "completed",
-  },
-];
+const defaultImage = eventTournamentImg;
 
 const EventCard = ({ event, index }: { event: Event; index: number }) => {
   const isCompleted = event.status === "completed";
@@ -150,6 +100,49 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
 
 const Events = () => {
   const [activeTab, setActiveTab] = useState("upcoming");
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbypi30aqxCQL35F6KkhsYzlxPm16P4YUgHNQkDHRH7dcnZq7XmT9-D_wm8mhgL1pnk/exec");
+        console.log("Response:", response);
+        var curDate = new Date().toLocaleDateString()
+        
+        const data = await response.json();
+        console.log("Data:", data);
+        
+        // Handle the API response - map it to Event interface
+        const formattedEvents = Array.isArray(data?.events) ? data?.events.map((event: any, index: number) => ({
+          id: event.id || `${index}`,
+          title: event.title || event.name || "",
+          description: event.description || "",
+          date: new Date(event.date).toLocaleDateString() || "",
+          time: new Date(event.date).toLocaleTimeString() || "",
+          location: event.location || "",
+          image: event.image || defaultImage,
+          status: new Date(event.date).toLocaleDateString() < curDate ? "completed" : "upcoming",
+          active: event.status == "0"
+        })) : [];
+
+        const filteredEvents = formattedEvents.filter((event: Event) => event.active);
+        console.log(filteredEvents);
+        
+        
+        setEvents(filteredEvents);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+        setError("Failed to load events");
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
   const upcomingEvents = events.filter((e) => e.status === "upcoming");
   const completedEvents = events.filter((e) => e.status === "completed");
 
@@ -179,48 +172,62 @@ const Events = () => {
       {/* Events List */}
       <section className="py-16 lg:py-20">
         <div className="container mx-auto px-4">
-          <Tabs defaultValue="upcoming" value={activeTab} onValueChange={setActiveTab}>
-            <div className="flex justify-center mb-12">
-              <TabsList className="bg-secondary p-1 rounded-xl">
-                <TabsTrigger
-                  value="upcoming"
-                  className="px-6 py-2.5 rounded-lg font-heading font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
-                >
-                  Upcoming ({upcomingEvents.length})
-                </TabsTrigger>
-                <TabsTrigger
-                  value="completed"
-                  className="px-6 py-2.5 rounded-lg font-heading font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
-                >
-                  Completed ({completedEvents.length})
-                </TabsTrigger>
-              </TabsList>
+          {loading && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground font-body">Loading events...</p>
             </div>
+          )}
 
-            <TabsContent value="upcoming" className="space-y-6">
-              {upcomingEvents.length > 0 ? (
-                upcomingEvents.map((event, index) => (
-                  <EventCard key={event.id} event={event} index={index} />
-                ))
-              ) : (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground font-body">No upcoming events at the moment.</p>
-                </div>
-              )}
-            </TabsContent>
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-red-600 font-body">{error}</p>
+            </div>
+          )}
 
-            <TabsContent value="completed" className="space-y-6">
-              {completedEvents.length > 0 ? (
-                completedEvents.map((event, index) => (
-                  <EventCard key={event.id} event={event} index={index} />
-                ))
-              ) : (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground font-body">No completed events yet.</p>
-                </div>
-              )}
-            </TabsContent>
-          </Tabs>
+          {!loading && !error && (
+            <Tabs defaultValue="upcoming" value={activeTab} onValueChange={setActiveTab}>
+              <div className="flex justify-center mb-12">
+                <TabsList className="bg-secondary p-1 rounded-xl">
+                  <TabsTrigger
+                    value="upcoming"
+                    className="px-6 py-2.5 rounded-lg font-heading font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+                  >
+                    Upcoming ({upcomingEvents.length})
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="completed"
+                    className="px-6 py-2.5 rounded-lg font-heading font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+                  >
+                    Completed ({completedEvents.length})
+                  </TabsTrigger>
+                </TabsList>
+              </div>
+
+              <TabsContent value="upcoming" className="space-y-6">
+                {upcomingEvents.length > 0 ? (
+                  upcomingEvents.map((event, index) => (
+                    <EventCard key={event.id} event={event} index={index} />
+                  ))
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-muted-foreground font-body">No upcoming events at the moment.</p>
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="completed" className="space-y-6">
+                {completedEvents.length > 0 ? (
+                  completedEvents.map((event, index) => (
+                    <EventCard key={event.id} event={event} index={index} />
+                  ))
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-muted-foreground font-body">No completed events yet.</p>
+                  </div>
+                )}
+              </TabsContent>
+            </Tabs>
+          )}
         </div>
       </section>
     </Layout>
