@@ -8,6 +8,12 @@ import { Link } from "react-router-dom";
 import eventTournamentImg from "@/assets/event-tournament.jpg";
 import eventBeltCeremonyImg from "@/assets/event-belt-ceremony.jpg";
 
+// Extract file ID from Google Drive URL
+const getGoogleDriveFileId = (url: string): string | null => {
+  const match = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  return match ? match[1] : null;
+};
+
 interface Event {
   id: string;
   title: string;
@@ -24,6 +30,8 @@ const defaultImage = eventTournamentImg;
 
 const EventCard = ({ event, index }: { event: Event; index: number }) => {
   const isCompleted = event.status === "completed";
+  const fileId = getGoogleDriveFileId(event.image);
+  const isGoogleDriveFile = event.image.includes("drive.google.com");
 
   return (
     <motion.div
@@ -36,12 +44,24 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
     >
       <div className="flex flex-col lg:flex-row">
         {/* Image */}
-        <div className="relative lg:w-80 h-48 lg:h-auto overflow-hidden">
-          <img
-            src={event.image}
-            alt={event.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+        <div className="relative lg:w-80 h-48 lg:h-auto overflow-hidden bg-gray-200">
+            {isGoogleDriveFile && fileId ? (
+            <embed
+              src={`https://drive.google.com/file/d/${fileId}/preview`}
+              className="w-full h-full"
+              type="application/pdf"
+              title={event.title}
+            />
+            ) : (
+            <img
+              src={event.image || defaultImage}
+              alt={event.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              onError={(e) => {
+              (e.target as HTMLImageElement).src = defaultImage;
+              }}
+            />
+            )}
           {isCompleted && (
             <div className="absolute inset-0 bg-foreground/40 flex items-center justify-center">
               <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-background font-heading text-sm font-semibold text-foreground">
@@ -107,27 +127,39 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbypi30aqxCQL35F6KkhsYzlxPm16P4YUgHNQkDHRH7dcnZq7XmT9-D_wm8mhgL1pnk/exec");
+        const response = await fetch(
+          "https://script.google.com/macros/s/AKfycbwG5H5kPqTthMqDK-avyHl-fgoyWyCpgooTw2wVHJTNlOAfjiRsNxP8bJQyl8OTYUms/exec",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              "action": "getAllEvents"
+            })
+          }
+        );
         console.log("Response:", response);
         var curDate = new Date().toLocaleDateString()
         
         const data = await response.json();
         console.log("Data:", data);
         
+        if (data.status === "error") {
+          throw new Error(data.message || "API returned an error");
+        }
+        
         // Handle the API response - map it to Event interface
         const formattedEvents = Array.isArray(data?.events) ? data?.events.map((event: any, index: number) => ({
           id: event.id || `${index}`,
-          title: event.title || event.name || "",
+          title: event.title || "",
           description: event.description || "",
           date: new Date(event.date).toLocaleDateString() || "",
           time: new Date(event.date).toLocaleTimeString() || "",
-          location: event.location || "",
-          image: event.image || defaultImage,
+          location: event.description || "",
+          image: event.imageUrl || defaultImage,
           status: new Date(event.date).toLocaleDateString() < curDate ? "completed" : "upcoming",
-          active: event.status == "0"
+          active: event.createdAt == 1
         })) : [];
 
-        const filteredEvents = formattedEvents.filter((event: Event) => event.active);
+        const filteredEvents = formattedEvents.filter((event) => event.status !== 0 );
         console.log(filteredEvents);
         
         
