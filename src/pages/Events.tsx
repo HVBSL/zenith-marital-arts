@@ -46,10 +46,11 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
         {/* Image */}
         <div className="relative lg:w-80 h-48 lg:h-auto overflow-hidden bg-gray-200">
             {isGoogleDriveFile && fileId ? (
-            <embed
+            <iframe
               src={`https://drive.google.com/file/d/${fileId}/preview`}
               className="w-full h-full"
-              type="application/pdf"
+              width='100%'
+              height='100%'
               title={event.title}
             />
             ) : (
