@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Mail, Phone, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -9,11 +9,13 @@ export const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-accent flex items-center justify-center">
-                <Shield className="w-6 h-6 text-accent-foreground" />
-              </div>
+              <img 
+                src="/Zenith-Logo.png" 
+                alt="Zenith Logo" 
+                className="w-12 h-12"
+              />
               <div>
-                <h3 className="font-heading font-bold text-xl">Bushido Dojo</h3>
+                <h3 className="font-heading font-bold text-xl">Ellalan</h3>
                 <p className="text-sm opacity-70">Martial Arts Academy</p>
               </div>
             </div>
@@ -92,7 +94,7 @@ export const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-background/10">
           <p className="text-center text-sm opacity-60">
-            © {new Date().getFullYear()} Bushido Dojo. All rights reserved.
+            © {new Date().getFullYear()} Ellalan. All rights reserved.
           </p>
         </div>
       </div>

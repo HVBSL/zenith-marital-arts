@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Shield, LayoutDashboard } from "lucide-react";
+import { Menu, X, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAdmin } from "@/contexts/AdminContext";
 
@@ -23,12 +23,14 @@ export const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-accent flex items-center justify-center shadow-accent transition-transform group-hover:scale-105">
-              <Shield className="w-5 h-5 lg:w-6 lg:h-6 text-accent-foreground" />
-            </div>
+            <img 
+              src="/Zenith-Logo.png" 
+              alt="Zenith Logo" 
+              className="w-10 h-10 lg:w-12 lg:h-12 transition-transform group-hover:scale-105"
+            />
             <div className="hidden sm:block">
               <h1 className="font-heading font-bold text-lg lg:text-xl text-foreground">
-                Bushido Dojo
+                Ellalan
               </h1>
               <p className="text-xs text-muted-foreground -mt-0.5">
                 Martial Arts Academy
