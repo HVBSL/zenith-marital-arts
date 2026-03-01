@@ -155,8 +155,8 @@ const Events = () => {
           time: new Date(event.date).toLocaleTimeString() || "",
           location: event.description || "",
           image: event.imageUrl || defaultImage,
-          status: new Date(event.date).toLocaleDateString() < curDate ? "completed" : "upcoming",
-          active: event.createdAt == 1
+          status: event.status != 0 ? "completed" : "upcoming",
+          active: 1
         })) : [];
 
         const filteredEvents = formattedEvents.filter((event) => event.status !== 0 );
