@@ -98,8 +98,8 @@ const Enquiry = () => {
                       <h3 className="font-heading font-semibold text-foreground mb-1">
                         Phone
                       </h3>
-                      <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                        +1 (234) 567-890
+                      <a href="tel:+919789017717" className="text-muted-foreground hover:text-primary transition-colors">
+                        +91 9789017717, +91 9445698017
                       </a>
                     </div>
                   </div>
@@ -112,8 +112,8 @@ const Enquiry = () => {
                       <h3 className="font-heading font-semibold text-foreground mb-1">
                         Email
                       </h3>
-                      <a href="mailto:info@bushidodojo.com" className="text-muted-foreground hover:text-primary transition-colors">
-                        info@bushidodojo.com
+                      <a href="mailto:ellalanmartialartsfitnessmind@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                        ellalanmartialartsfitnessmind@gmail.com
                       </a>
                     </div>
                   </div>
@@ -127,8 +127,7 @@ const Enquiry = () => {
                         Location
                       </h3>
                       <p className="text-muted-foreground">
-                        123 Martial Arts Way<br />
-                        Dojo City, MA 12345
+                        Door No - 46/29, No. 3, Old, 8th St,<br /> NN Garden, Washermanpet, Chennai,<br /> Tamil Nadu 600021
                       </p>
                     </div>
                   </div>

@@ -45,17 +45,18 @@ export const Footer = () => {
           <div>
             <h4 className="font-heading font-bold text-lg mb-4">Contact Us</h4>
             <div className="flex flex-col gap-3">
-              <a href="tel:+1234567890" className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <a href="tel:+919789017717" className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-opacity">
                 <Phone className="w-4 h-4" />
-                +1 (234) 567-890
+                +91 9789017717, +91 9445698017
               </a>
-              <a href="mailto:info@bushidodojo.com" className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <a href="mailto:ellalanmartialartsfitnessmind@gmail.com" className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-opacity">
                 <Mail className="w-4 h-4" />
-                info@bushidodojo.com
+                ellalanmartialartsfitnessmind@gmail.com
               </a>
               <div className="flex items-start gap-2 text-sm opacity-80">
                 <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>123 Martial Arts Way, Dojo City, MA 12345</span>
+                <span>
+                  Door No - 46/29, No. 3, Old, 8th St,<br /> NN Garden, Washermanpet, Chennai,<br /> Tamil Nadu 600021</span>
               </div>
             </div>
           </div>
