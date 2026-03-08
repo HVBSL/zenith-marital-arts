@@ -99,7 +99,10 @@ const Enquiry = () => {
                         Phone
                       </h3>
                       <a href="tel:+919789017717" className="text-muted-foreground hover:text-primary transition-colors">
-                        +91 9789017717, +91 9445698017
+                        +91 97890 17717, 
+                      </a>
+                      <a href="tel:+917825917717" className="text-muted-foreground hover:text-primary transition-colors">
+                        +91 78259 17717
                       </a>
                     </div>
                   </div>

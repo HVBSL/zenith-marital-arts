@@ -47,10 +47,15 @@ export const Footer = () => {
           <div>
             <h4 className="font-heading font-bold text-lg mb-4">Contact Us</h4>
             <div className="flex flex-col gap-3">
-              <a href="tel:+919789017717" className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-opacity">
+              <span className="flex items-center gap-2 text-sm ">
                 <Phone className="w-4 h-4" />
-                +91 9789017717, +91 9445698017
-              </a>
+                <a href="tel:+919789017717" className="opacity-80 hover:opacity-100 transition-opacity">
+                  +91 97890 17717,
+                </a>
+                <a href="tel:+917825917717" className="opacity-80 hover:opacity-100 transition-opacity">
+                  +91 78259 17717
+                </a>
+              </span>
               <a href="mailto:ellalanmartialartsfitnessmind@gmail.com" className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-opacity">
                 <Mail className="w-4 h-4" />
                 ellalanmartialartsfitnessmind@gmail.com

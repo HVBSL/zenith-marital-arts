@@ -14,7 +14,7 @@ const classes = [
       "Build confidence, discipline, and physical fitness in a fun and supportive environment designed specifically for children.",
     image: kidsKarateImg,
     ageRange: "Ages 5-12",
-    schedule: "Mon, Wed, Fri",
+    schedule: "Everyday 5AM - 10PM",
   },
   {
     title: "Adult Karate",
@@ -22,7 +22,7 @@ const classes = [
       "Master traditional karate techniques while improving strength, flexibility, and mental focus in our adult program.",
     image: adultKarateImg,
     ageRange: "Ages 18+",
-    schedule: "Tue, Thu, Sat",
+    schedule: "Everyday 5AM - 10PM",
   },
   {
     title: "Girls Self-Defense",
@@ -30,31 +30,31 @@ const classes = [
       "Empowering women and girls with practical self-defense skills, situational awareness, and personal safety techniques.",
     image: girlsSelfDefenseImg,
     ageRange: "All Ages",
-    schedule: "Wed, Sat",
+    schedule: "Everyday 5AM - 10PM",
   },
   {
     title: "Muay Thai",
     description:
       "Learn the art of Muay Thai with our experienced instructors and build incredible strength and endurance.",
     image: muayThaiImg,
-    ageRange: "Ages 18+",
-    schedule: "Wed, Sat",
+    ageRange: "Ages 10+",
+    schedule: "Everyday 5AM - 10PM",
   },
   {
     title: "MMA",
     description:
       "Train in mixed martial arts with our expert instructors and develop comprehensive fighting skills.",
     image: mmaImg,
-    ageRange: "Ages 18+",
-    schedule: "Wed, Sat",
+    ageRange: "Ages 10+",
+    schedule: "Everyday 5AM - 10PM",
   },
   {
     title: "Judo",
     description:
       "Develop discipline, respect, and physical strength through the practice of judo.",
     image: judoImg,
-    ageRange: "Ages 18+",
-    schedule: "Wed, Sat",
+    ageRange: "Ages 10+",
+    schedule: "Everyday 5AM - 10PM",
   },
 ];
 
