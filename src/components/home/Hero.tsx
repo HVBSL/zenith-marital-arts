@@ -37,8 +37,8 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6"
           >
-            Master the Art of
-            <span className="block text-gradient-gold">Discipline & Strength</span>
+            Master the Art of<br />
+            <span className="text-gradient-gold">Discipline & Strength</span>
           </motion.h1>
 
           <motion.p
