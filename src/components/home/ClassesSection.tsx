@@ -37,7 +37,7 @@ const classes = [
     description:
       "Learn the art of Muay Thai with our experienced instructors and build incredible strength and endurance.",
     image: muayThaiImg,
-    ageRange: "All Ages",
+    ageRange: "Ages 18+",
     schedule: "Wed, Sat",
   },
   {
@@ -45,7 +45,7 @@ const classes = [
     description:
       "Train in mixed martial arts with our expert instructors and develop comprehensive fighting skills.",
     image: mmaImg,
-    ageRange: "All Ages",
+    ageRange: "Ages 18+",
     schedule: "Wed, Sat",
   },
   {
@@ -53,7 +53,7 @@ const classes = [
     description:
       "Develop discipline, respect, and physical strength through the practice of judo.",
     image: judoImg,
-    ageRange: "All Ages",
+    ageRange: "Ages 18+",
     schedule: "Wed, Sat",
   },
 ];
