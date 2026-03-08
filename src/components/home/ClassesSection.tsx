@@ -3,6 +3,9 @@ import { ClassCard } from "./ClassCard";
 import kidsKarateImg from "@/assets/kids-karate.jpg";
 import adultKarateImg from "@/assets/adult-karate.jpg";
 import girlsSelfDefenseImg from "@/assets/girls-self-defense.jpg";
+import muayThaiImg from "@/assets/muay_thai_panel.jpg";
+import mmaImg from "@/assets/mma_panel.jpg";
+import judoImg from "@/assets/judo_panel.jpg";
 
 const classes = [
   {
@@ -26,6 +29,30 @@ const classes = [
     description:
       "Empowering women and girls with practical self-defense skills, situational awareness, and personal safety techniques.",
     image: girlsSelfDefenseImg,
+    ageRange: "All Ages",
+    schedule: "Wed, Sat",
+  },
+  {
+    title: "Muay Thai",
+    description:
+      "Learn the art of Muay Thai with our experienced instructors and build incredible strength and endurance.",
+    image: muayThaiImg,
+    ageRange: "All Ages",
+    schedule: "Wed, Sat",
+  },
+  {
+    title: "MMA",
+    description:
+      "Train in mixed martial arts with our expert instructors and develop comprehensive fighting skills.",
+    image: mmaImg,
+    ageRange: "All Ages",
+    schedule: "Wed, Sat",
+  },
+  {
+    title: "Judo",
+    description:
+      "Develop discipline, respect, and physical strength through the practice of judo.",
+    image: judoImg,
     ageRange: "All Ages",
     schedule: "Wed, Sat",
   },

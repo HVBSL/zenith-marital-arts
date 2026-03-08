@@ -89,7 +89,7 @@ export const Hero = () => {
                 <Award className="w-6 h-6 text-accent-foreground" />
               </div>
               <div>
-                <p className="font-heading font-bold text-2xl text-background">15+</p>
+                <p className="font-heading font-bold text-2xl text-background">30+</p>
                 <p className="text-sm text-background/60">Years Experience</p>
               </div>
             </div>
