@@ -142,16 +142,12 @@ const Enquiry = () => {
                   </h3>
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <p className="flex justify-between">
-                      <span>Monday - Friday</span>
-                      <span>5:00 PM - 9:00 PM</span>
-                    </p>
-                    <p className="flex justify-between">
-                      <span>Saturday</span>
-                      <span>9:00 AM - 5:00 PM</span>
+                      <span>Monday - Saturday</span>
+                      <span>5:00 AM - 10:00 PM</span>
                     </p>
                     <p className="flex justify-between">
                       <span>Sunday</span>
-                      <span>10:00 AM - 2:00 PM</span>
+                      <span>9:00 AM - 6:00 PM</span>
                     </p>
                   </div>
                 </div>
@@ -273,6 +269,9 @@ const Enquiry = () => {
                               <SelectItem value="adult-karate">Adult Karate</SelectItem>
                               <SelectItem value="girls-self-defense">Girls Self-Defense</SelectItem>
                               <SelectItem value="private-lessons">Private Lessons</SelectItem>
+                              <SelectItem value="muay-thai">Muay Thai</SelectItem>
+                              <SelectItem value="MMA">MMA</SelectItem>
+                              <SelectItem value="Judo">Judo</SelectItem>
                             </SelectContent>
                           </Select>
                           {errors.classType && (
