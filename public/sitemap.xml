@@ -21,16 +21,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://emawarriors.com/admin/login</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://emawarriors.com/admin/dashboard</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
     <loc>https://emawarriors.com/sitemap</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

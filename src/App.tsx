@@ -26,8 +26,8 @@ const App = () => (
             <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/enquiry" element={<Enquiry />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            {/* <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} /> */}
             <Route path="/sitemap" element={<Sitemap />} />
           </Routes>
         </BrowserRouter>
