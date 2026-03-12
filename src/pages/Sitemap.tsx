@@ -6,8 +6,8 @@ const sitemapLinks = [
   { name: "Events", path: "/events" },
   { name: "Gallery", path: "/gallery" },
   { name: "Enquiry", path: "/enquiry" },
-  { name: "Admin Login", path: "/admin/login" },
-  { name: "Admin Dashboard", path: "/admin/dashboard" },
+  // { name: "Admin Login", path: "/admin/login" },
+  // { name: "Admin Dashboard", path: "/admin/dashboard" },
 ];
 
 const Sitemap = () => {
