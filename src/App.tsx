@@ -10,6 +10,7 @@ import Gallery from "./pages/Gallery";
 import Enquiry from "./pages/Enquiry";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import Sitemap from "./pages/Sitemap";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/enquiry" element={<Enquiry />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/sitemap" element={<Sitemap />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

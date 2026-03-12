@@ -40,6 +40,9 @@ export const Footer = () => {
               <Link to="/enquiry" className="text-sm opacity-80 hover:opacity-100 transition-opacity">
                 Enquiry
               </Link>
+              <Link to="/sitemap" className="text-sm opacity-80 hover:opacity-100 transition-opacity">
+                Sitemap
+              </Link>
             </nav>
           </div>
 
