@@ -24,8 +24,8 @@ export const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <img 
-              src="/Zenith-Logo.png" 
-              alt="Zenith Logo" 
+              src="/EMAWarriors.png" 
+              alt="EMAWarriors Logo" 
               className="w-10 h-10 lg:w-12 lg:h-12 transition-transform group-hover:scale-105"
             />
             <div className="hidden sm:block">

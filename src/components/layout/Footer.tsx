@@ -10,8 +10,8 @@ export const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <img 
-                src="/Zenith-Logo.png" 
-                alt="Zenith Logo" 
+                src="/EMAWarriors.png" 
+                alt="EMAWarriors Logo" 
                 className="w-12 h-12"
               />
               <div>
