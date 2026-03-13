@@ -61,7 +61,7 @@ const Enquiry = () => {
             animate={{ opacity: 1, y: 0 }}
             className="font-heading text-4xl lg:text-5xl font-bold text-background mb-4"
           >
-            Free Trail Classes
+            FREE Trial Classes
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
