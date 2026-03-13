@@ -156,7 +156,7 @@ const Events = () => {
           time: new Date(event.date).toLocaleTimeString() || "",
           location: event.description || "",
           image: event.imageUrl || defaultImage,
-          status: event.status != 0 ? "completed" : "upcoming",
+          status: event.status != 1 ? "completed" : "upcoming",
           active: 1
         })) : [];
 
