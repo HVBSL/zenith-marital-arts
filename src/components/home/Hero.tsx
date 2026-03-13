@@ -59,7 +59,7 @@ export const Hero = () => {
           >
             <Button variant="hero" size="xl" asChild>
               <Link to="/enquiry">
-                Free Trail Classes
+                FREE Trial Classes
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </Button>
