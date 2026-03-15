@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
+# Ellalan Martial Arts Academy Website
 
-## Project info
+This project is intended to run with Bun (see `bun.lockb`).
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+A marketing site for Ellalan Martial Arts Academy (EMA Warriors). Built as a Vite + React SPA with animated sections, event listings, gallery blocks, and an enquiry form.
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+The app is a single-page React site with client-side routing. Key sections and features:
 
-**Use Lovable**
+- Home page with hero, instructors, classes, and CTA sections.
+- Events page that pulls event data from a Google Apps Script endpoint.
+- Gallery page that pulls grouped galleries from a Google Apps Script endpoint and supports Google Drive previews, with local fallbacks.
+- Enquiry page with a validated form and contact details.
+- Human-readable sitemap page.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Routes
 
-Changes made via Lovable will be committed automatically to this repo.
+- `/` Home
+- `/events` Events & tournaments
+- `/gallery` Gallery
+- `/enquiry` Enquiry form
+- `/sitemap` HTML sitemap
 
-**Use your preferred IDE**
+Admin pages exist in `src/pages/AdminLogin.tsx` and `src/pages/AdminDashboard.tsx` but are not currently routed (see `src/App.tsx`).
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Data Sources
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Events: Google Apps Script endpoint configured in `src/pages/Events.tsx`.
+- Galleries: Google Apps Script endpoint configured in `src/pages/Gallery.tsx`.
 
-Follow these steps:
+Both endpoints are called client-side and should return JSON in the expected shape. If the gallery endpoint fails or returns no active data, the page falls back to local default images.
+
+## Tech Stack
+
+- Vite + React + TypeScript
+- React Router
+- Tailwind CSS + shadcn/ui
+- Framer Motion
+- React Hook Form + Zod
+- TanStack Query
+- Vitest
+
+## Getting Started
+
+This repo includes `bun.lockb`, so the primary workflow is Bun. You can still use npm if you prefer, but Bun is the expected default.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+bun install
+bun run dev
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Alternative with npm:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```sh
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Vite 5 requires Node.js 18+.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Scripts
 
-**Use GitHub Codespaces**
+- `bun run dev` Start the Vite dev server
+- `bun run build` Production build to `dist/`
+- `bun run build:dev` Development-mode build
+- `bun run preview` Preview the production build
+- `bun run lint` Run ESLint
+- `bun run test` Run Vitest in CI mode
+- `bun run test:watch` Run Vitest in watch mode
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deployment
 
-## What technologies are used for this project?
+This is a static SPA. Build output is emitted to `dist/`. The repository includes `vercel.json` to rewrite all routes to `index.html` for client-side routing.
 
-This project is built with:
+If you deploy under a custom domain, update `public/sitemap.xml` (and `public/robots.txt`) to match the canonical URL.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## SEO
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- `public/robots.txt` allows all crawlers and points to the sitemap.
+- `public/sitemap.xml` includes the main routes for indexing.
